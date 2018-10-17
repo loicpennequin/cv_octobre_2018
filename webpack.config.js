@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const GoogleFontsPlugin = require('google-fonts-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    .BundleAnalyzerPlugin;
 const CompressionPlugin = require('compression-webpack-plugin');
 const sass = require('node-sass');
 const chromatic = require('chromatic-sass');
@@ -88,8 +89,8 @@ module.exports = env => ({
         }),
         new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css"
+            filename: '[name].css',
+            chunkFilename: '[id].css'
         }),
         // new GoogleFontsPlugin('google-fonts.config.json'),
         env.NODE_ENV === 'production' &&
