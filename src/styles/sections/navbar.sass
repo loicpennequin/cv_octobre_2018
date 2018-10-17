@@ -1,0 +1,33 @@
+.navbar
+    position: fixed
+    z-index: $z-index-navbar
+    width: 100%
+    padding: $spacing-sm 0
+
+.navbar-links
+    list-style: none
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    &_item
+        a, a:hover, a:visited
+            text-decoration: none
+            color: $white
+            position: relative
+            padding: $spacing-xs
+            &::after
+                content: ''
+                z-index: -1
+                position: absolute
+                right: 0
+                top: 0
+                width: 0
+                height: 100%
+                background: chromatic-gradient(lighten($pink, 10%),$pink)
+                transition: all 0.3s
+                border-radius: 6px
+                opacity: 0
+
+            &:hover::after
+                width: 100%
+                opacity: 0.5

@@ -1,0 +1,14 @@
+{
+	"google-fonts-plugin": {
+		"fonts": [
+			{
+				"family": "Roboto",
+				"variants": ["400", "900"]
+			},
+			{
+				"family": "Lora"
+			}
+		],
+		"outputDir": "dist/fonts"
+	}
+}
