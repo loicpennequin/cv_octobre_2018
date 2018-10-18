@@ -3,15 +3,18 @@ export default class Circle {
         this.p5 = p5;
         this.target = this.p5.createVector(x, y);
         this.size = size;
-        this.pos = this.p5.createVector(0 - this.size/3, this.p5.height + this.size/3);
-        this.opacity = this.p5.random(70,100);
+        this.pos = this.p5.createVector(
+            0 - this.size / 3,
+            this.p5.height + this.size / 3
+        );
+        this.opacity = this.p5.random(70, 100);
         this.stepsCount = 250;
         this.moveStep = this.p5
             .createVector(this.target.x, this.target.y)
             .sub(this.pos)
             .div(this.stepsCount);
         this.sizeStep = this.size / this.stepsCount;
-        this.opacityStep = this.opacity / (this.stepsCount *2 );
+        this.opacityStep = this.opacity / (this.stepsCount * 2);
     }
 
     shrink() {

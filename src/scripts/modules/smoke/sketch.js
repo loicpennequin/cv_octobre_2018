@@ -29,7 +29,7 @@ class Sketch {
         this.initSmoke(p5);
     }
 
-    initSmoke(p5){
+    initSmoke(p5) {
         for (let i = 0; i < this.circlesCount; i++) {
             this.circles.push(
                 new Circle(
@@ -54,11 +54,11 @@ class Sketch {
         this.circles = this.circles.filter(c => c.size > 0);
         if (this.circles.length <= 0) {
             p5.noLoop();
-            setTimeout( () => this.restart(p5), this.restartTimeout);
+            setTimeout(() => this.restart(p5), this.restartTimeout);
         }
     }
 
-    restart(p5){
+    restart(p5) {
         this.initSmoke(p5);
         p5.loop();
     }
