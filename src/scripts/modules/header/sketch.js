@@ -1,14 +1,16 @@
-import p5 from 'p5';
+import p5 from 'p5/lib/p5.min.js';
+import Circle from './Circle.js';
 
 class Sketch {
     constructor() {
         this.wrapper = document.getElementById('header-sketch');
         this.canvasHeight = this.wrapper.offsetHeight;
         this.canvasWidth = window.innerWidth;
-        this.circlesCount = 50;
-        this.circleMinSize = 200;
-        this.circleMaxSize = 400;
+        this.circlesCount = 35;
+        this.circleMinSize = 300;
+        this.circleMaxSize = 500;
         this.circles = [];
+        this.restartTimeout = 5000;
     }
 
     sketch(p5) {
@@ -24,6 +26,10 @@ class Sketch {
         );
         p5.noStroke();
         // p5.frameRate(1);
+        this.initSmoke(p5);
+    }
+
+    initSmoke(p5){
         for (let i = 0; i < this.circlesCount; i++) {
             this.circles.push(
                 new Circle(
@@ -41,52 +47,25 @@ class Sketch {
         this.circles.forEach(c => {
             c.render();
         });
-        this.cleanup();
+        this.cleanup(p5);
     }
 
-    cleanup() {
+    cleanup(p5) {
         this.circles = this.circles.filter(c => c.size > 0);
         if (this.circles.length <= 0) {
             p5.noLoop();
+            setTimeout( () => this.restart(p5), this.restartTimeout);
         }
+    }
+
+    restart(p5){
+        this.initSmoke(p5);
+        p5.loop();
     }
 
     init() {
         this.sketch = this.sketch.bind(this);
         return new p5(this.sketch);
-    }
-}
-
-class Circle {
-    constructor(p5, x, y, size) {
-        this.p5 = p5;
-        this.target = this.p5.createVector(x, y);
-        this.pos = p5.createVector(0, this.p5.height);
-        this.size = size;
-        this.step = p5.random(1, 3);
-        this.opacity = 100;
-        this.step = this.p5
-            .createVector(this.target.x, this.target.y)
-            .sub(this.pos)
-            .div(200);
-    }
-
-    shrink() {
-        if (this.size >= 0) {
-            this.size -= 1;
-        }
-        this.opacity -= 0.5;
-    }
-
-    move() {
-        this.pos = this.pos.add(this.step);
-    }
-
-    render() {
-        this.shrink();
-        this.move();
-        this.p5.fill(255, 255, 255, this.opacity);
-        this.p5.ellipse(this.pos.x, this.pos.y, this.size);
     }
 }
 
