@@ -1,10 +1,10 @@
 import 'normalize.css/normalize.css';
-import './../styles/main.sass'
+import './../styles/main.sass';
 
-import { sketch } from './modules/header';
+import smoke from './modules/smoke';
 
-function start(){
-    sketch.init();
+function start() {
+    smoke.init();
 }
 
 document.addEventListener('DOMContentLoaded', start);

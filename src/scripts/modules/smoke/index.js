@@ -1,5 +1,3 @@
 import sketch from './sketch.js';
 
-export {
-    sketch
-}
+export default sketch;
